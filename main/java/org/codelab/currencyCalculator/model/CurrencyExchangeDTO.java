@@ -2,7 +2,9 @@ package org.codelab.currencyCalculator.model;
 
 import java.math.BigDecimal;
 import java.util.Map;
+/*
 
+ */
 public class CurrencyExchangeDTO {
 
     private final String timestamp;
