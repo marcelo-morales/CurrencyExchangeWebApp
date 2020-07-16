@@ -6,7 +6,7 @@ import java.sql.Connection;
 public class SqlCurrencyDAO implements CurrencyDAO {
 
     //database connection --> using JDBC.
-
+    //set up connection with Postgres database
     public SqlCurrencyDAO(Connection connection) {
         //do something with it.
     }

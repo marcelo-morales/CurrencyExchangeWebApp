@@ -7,11 +7,12 @@ import com.google.common.base.Objects;
 
 public class CurrencyExchange {
 
-    private final String currencyId;
-    private final BigDecimal exchangeRate;
-    private final String baseCurrency;
-    private final Date timestamp;
+    private final String currencyId; //ID of each currency
+    private final BigDecimal exchangeRate; //exchange rate of each currency, initially will be rate to convert from inputCurrency to the dollar
+    private final String baseCurrency; //initially will be dollar
+    private final Date timestamp; //time that calculation happened, when called database
 
+    //constructor
     public CurrencyExchange(String currencyId, BigDecimal exchangeRate, String baseCurrency, Date timestamp) {
         this.currencyId = currencyId;
         this.exchangeRate = exchangeRate;
@@ -20,19 +21,19 @@ public class CurrencyExchange {
     }
 
     public String getCurrencyId() {
-        return currencyId;
+        return this.currencyId;
     }
 
     public BigDecimal getExchangeRate() {
-        return exchangeRate;
+        return this.exchangeRate;
     }
 
     public String getBaseCurrency() {
-        return baseCurrency;
+        return this.baseCurrency;
     }
 
     public Date getTimestamp() {
-        return timestamp;
+        return this.timestamp;
     }
 
     @Override

@@ -11,7 +11,7 @@ import org.codelab.currencyCalculator.services.data.CurrencyDAO;
  */
 public class DatabaseService {
 
-    private final CurrencyDAO currencyDAO;
+    private final CurrencyDAO currencyDAO; //currency data access object
 
     public DatabaseService(CurrencyDAO currencyDAO) {
         this.currencyDAO = currencyDAO;

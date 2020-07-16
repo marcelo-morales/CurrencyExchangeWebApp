@@ -2,6 +2,7 @@ package org.codelab.currencyCalculator.services.data;
 
 import java.math.BigDecimal;
 
+//Currency Data Access Object
 public interface CurrencyDAO {
 
 
