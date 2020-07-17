@@ -17,7 +17,6 @@ public class CurrencyService {
     }
 
 
-
     //methods
 
     public BigDecimal getAmount(BigDecimal inputAmount, String currencyId) {
@@ -51,6 +50,8 @@ public class CurrencyService {
         // currencies. (EUR, CAD, GBP, YEN, YUAN, Ruble, Mexican Peso, AUD, Peru SOL) -> USD
 
         // currencyService.convert(value, currency);
+
+
 
         /* Spark java for next time  */
 
