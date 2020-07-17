@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.sql.*;
 import java.sql.Connection;
 import java.sql.Statement;
+import java.sql.Timestamp;
 
 public class SqlCurrencyDAO implements CurrencyDAO {
 
@@ -57,7 +58,7 @@ public class SqlCurrencyDAO implements CurrencyDAO {
      * SELECT rate FROM CurrencyRates WHERE currencyName = "?" SORT BY timestamp
      */
     @Override
-    public BigDecimal getCurrency(String currencyId) {
+    public BigDecimal getRate(String currencyId) {
         //use db connection to get the currency, convert it to a BigDecimal and return it.
         try  {
             Statement return_currency = this.connection.createStatement();
@@ -78,4 +79,28 @@ public class SqlCurrencyDAO implements CurrencyDAO {
             //error happened, return null
             return null;
     }
+
+    public BigDecimal getTimestamp(String currencyId) {
+        //use db connection to get the currency, convert it to a BigDecimal and return it.
+        try  {
+            Statement return_currency = this.connection.createStatement();
+            ResultSet result_data = return_currency.executeQuery("SELECT timestamp WHERE currency_id = 'currencyId'");
+            //checking to see if worked
+            while(result_data.next()) {
+                System.out.print("What is returned from this function is: "+result_data+", ");
+                System.out.println();
+                Timestamp return_time = new Timestamp(result_data);
+                return return_time;
+            }
+        }
+        //getting the rate of the currency did not work, exception thrown and caught
+        catch (SQLException statement) {
+            System.out.println(statement.getMessage());
+
+        }
+        //error happened, return null
+        return null;
+    }
+
+
 }

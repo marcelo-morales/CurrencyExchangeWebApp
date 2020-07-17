@@ -11,5 +11,8 @@ public interface CurrencyDAO {
     void updateCurrency(String currencyId, BigDecimal value) throws SQLException;
 
     //BigDecimal getCurrency(String currencyId, String baseCurrency);
-    BigDecimal getCurrency(String currencyId);
+    BigDecimal getRate(String currencyId);
+
+    BigDecimal getTimestamp(String currencyId)
+
 }

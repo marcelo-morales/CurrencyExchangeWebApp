@@ -17,6 +17,10 @@ public class DatabaseService {
         this.currencyDAO = currencyDAO;
     }
 
+    public CurrencyDAO getCurrencyDAO() {
+        return currencyDAO;
+    }
+
     public BigDecimal convertFromTo(String currencyTo) {
         //its doing Too much.
         return currencyDAO.getCurrency(currencyTo);

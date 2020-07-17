@@ -1,4 +1,5 @@
 package org.codelab.currencyCalculator.services;
+import java.io.*;
 
 import java.math.BigDecimal;
 
@@ -18,11 +19,20 @@ public class CurrencyService {
 
 
     //methods
-
     public BigDecimal getAmount(BigDecimal inputAmount, String currencyId) {
         // dbservice to lookup the current info
+
         BigDecimal conversionRate = databaseService.convertFromTo(currencyId);
         return inputAmount.multiply(conversionRate);
+    }
+
+    public BigDecimal getCurrentRate(String currencyId) {
+        BigDecimal rate = getRate(currencyId);
+        return rate;
+    }
+
+    public static DataProvider getDataProvider() {
+        return this.dataProvider;
     }
 
 
@@ -35,10 +45,20 @@ public class CurrencyService {
     //due calculation
     //return results
 
+
     public static void Main(String ... args) {
         //create
         // DatabaseService(CurrencyDAO)
         // CurrencyService(DatabaseService)
+
+        DatabaseService db = new DatabaseService(currencyDAO currencyDAO);
+
+        CurrencyService cs = new CurrencyService(db, getDataProvider());
+
+        db.getDataFromDatabase();
+
+
+
 
         // load DB with Data from the DataProvider
 
