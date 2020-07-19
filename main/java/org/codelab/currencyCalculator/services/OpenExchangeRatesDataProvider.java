@@ -1,15 +1,19 @@
 package org.codelab.currencyCalculator.services;
 
+import org.apache.http.client.utils.URIBuilder;
+import org.codelab.currencyCalculator.model.CurrencyExchange;
+import org.codelab.currencyCalculator.utils.CurrencyExchangeUtil;
+
 import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Arrays;
-import java.util.List;
 
-import org.apache.http.client.utils.URIBuilder;
-import org.codelab.currencyCalculator.model.CurrencyExchange;
-import org.codelab.currencyCalculator.utils.CurrencyExchangeUtil;
+//An ordered collection (also known as a sequence). The user of this interface has precise control over where in the
+// list each element is inserted. The user can access elements by their integer index (position in the list), and
+// search for elements in the list.
+import java.util.List;
 
 public class OpenExchangeRatesDataProvider implements DataProvider {
 
@@ -24,6 +28,10 @@ public class OpenExchangeRatesDataProvider implements DataProvider {
     private static List<CurrencyExchange> getCurrency(String baseCurrency, List<String> targetCurrencies ) throws Exception {
 
         URIBuilder uriBuilder = new URIBuilder();
+        //Utility class for building URIs from their components
+        //A Uniform Resource Identifier (URI) is a string of characters that unambiguously identifies a particular resource.
+
+
         uriBuilder.setScheme("https");
         uriBuilder.setHost(OPEN_EXCHANGE_URI);
         uriBuilder.setPath("/api/latest.json");
@@ -44,4 +52,13 @@ public class OpenExchangeRatesDataProvider implements DataProvider {
 
     }
 
+    @Override
+    /*
+    this will get the actual data from the database, will load DB with Data from the DataProvider
+    get the data from the database?, ignore...
+     */
+    public void getDataFromDatabase() {
+        //pseudocode
+
+    }
 }

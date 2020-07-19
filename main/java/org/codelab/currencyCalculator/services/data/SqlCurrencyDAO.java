@@ -29,7 +29,7 @@ public class SqlCurrencyDAO implements CurrencyDAO {
     }
 
     /*
-     * INSERT currencyRates cr SET cr.currencyName='someCurrency', cr.rate='12332', cr.timestamp='date/time' WHERE currencyName = ?
+     * will update a currency using SQL
      */
     @Override
     public void updateCurrency(String currencyId, BigDecimal value) throws SQLException {
@@ -51,11 +51,10 @@ public class SqlCurrencyDAO implements CurrencyDAO {
             System.out.println(statement.getMessage());
         }
 
-
     }
 
     /*
-     * SELECT rate FROM CurrencyRates WHERE currencyName = "?" SORT BY timestamp
+     * will get the rate of a currency using SQL
      */
     @Override
     public BigDecimal getRate(String currencyId) {
@@ -80,7 +79,10 @@ public class SqlCurrencyDAO implements CurrencyDAO {
             return null;
     }
 
-    public BigDecimal getTimestamp(String currencyId) {
+    /*
+    Will get the timestamp of a currency using SQL
+     */
+    public Timestamp getTimestamp(String currencyId) {
         //use db connection to get the currency, convert it to a BigDecimal and return it.
         try  {
             Statement return_currency = this.connection.createStatement();

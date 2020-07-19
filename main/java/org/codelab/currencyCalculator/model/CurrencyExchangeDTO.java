@@ -3,13 +3,13 @@ package org.codelab.currencyCalculator.model;
 import java.math.BigDecimal;
 import java.util.Map;
 /*
-Database Transfer Object
+Currency Exchange Database Transfer Object
  */
 public class CurrencyExchangeDTO {
 
     private final String timestamp;
     private final String inputCurrency;
-    private final Map<String, BigDecimal> rates;
+    private final Map<String, BigDecimal> rates; //An object that maps keys to values. A map cannot contain duplicate keys; each key can map to at most one value.
 
     public CurrencyExchangeDTO(String timestamp, String inputCurrency, Map<String,BigDecimal> rates) {
         this.timestamp = timestamp;

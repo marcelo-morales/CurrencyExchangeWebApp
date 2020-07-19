@@ -5,9 +5,7 @@ import java.math.BigDecimal;
 import org.codelab.currencyCalculator.services.data.CurrencyDAO;
 
 /*
- *  id|currencyName|rate|timestamp
- *
- *  SELECT rate FROM CurrencyRates WHERE currencyName = "?" SORT BY timestamp
+ *  This is the DataBase Service class
  */
 public class DatabaseService {
 
@@ -21,9 +19,12 @@ public class DatabaseService {
         return currencyDAO;
     }
 
+    /*
     public BigDecimal convertFromTo(String currencyTo) {
         //its doing Too much.
         return currencyDAO.getCurrency(currencyTo);
     }
+
+     */
 
 }
