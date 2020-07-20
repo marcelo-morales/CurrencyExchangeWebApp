@@ -11,7 +11,7 @@ public class CurrencyExchange {
     //we should always be working with this
     private final String currencyId; //ID of each currency
     private final BigDecimal exchangeRate; //exchange rate of each currency, initially will be rate to convert from inputCurrency to the dollar
-    private final String baseCurrency; //initially will be dollar
+    private final String baseCurrency; //initially will always be dollar
     private final Date timestamp; //time that calculation happened, when called database
 
     //constructor

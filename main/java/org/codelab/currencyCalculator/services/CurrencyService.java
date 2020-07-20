@@ -1,6 +1,9 @@
 package org.codelab.currencyCalculator.services;
 import org.codelab.currencyCalculator.model.CurrencyConversion;
 import org.codelab.currencyCalculator.services.data.SqlCurrencyDAO;
+import saspark.Spark.*; //importing Spark java
+import org.apache.spark.api.java.*;
+import org.apache.spark.api.java.function.*; //figute out Maven dependency
 
 import java.io.*;
 
@@ -27,7 +30,7 @@ public class CurrencyService {
     //call the database service
     //will use currencyDAO to get the currency
     //will get me back CurrencyExchange object
-    //want to get most recent one, sort by date, will get most recent CurrneyService
+    //want to get most recent one, sort by date, will get most recent CurrencyService
     //will return BigDecimal
 
 
@@ -44,17 +47,21 @@ public class CurrencyService {
 
     //will return JSON
     public CurrencyConversion doCurrencyConversion(String currencyFrom, String currencyTo, BigDecimal amountFrom) {
-        //call the database to get the info ... or call the existing method in this class getAmount.
+        get("/")
 
-        //load the data into the CurrencyConversion object.
 
-        //return that new CurencyConversion.
 
         //call the database to get the info ... or call the existing method in this class getAmount.
 
         //load the data into the CurrencyConversion object.
 
-        //return that new CurencyConversion.
+        //return that new CurrencyConversion.
+
+        //call the database to get the info ... or call the existing method in this class getAmount.
+
+        //load the data into the CurrencyConversion object.
+
+        //return that new CurrencyConversion.
         return null;
     }
 
@@ -96,9 +103,6 @@ public class CurrencyService {
 
 
 
-
-
-
 //Sparkjava
 
         //API call to get currency
@@ -128,12 +132,6 @@ public class CurrencyService {
       }
 
     */
-
-
-
-
-
-
 
 
 
