@@ -1,6 +1,8 @@
 package org.codelab.currencyCalculator.model;
-import java.math.BigDecimal;
+
 import com.google.gson.Gson;
+
+import java.math.BigDecimal;
 
 
 public class CurrencyConversion {

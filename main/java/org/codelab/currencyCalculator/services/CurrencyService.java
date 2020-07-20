@@ -1,9 +1,11 @@
 package org.codelab.currencyCalculator.services;
 import org.codelab.currencyCalculator.model.CurrencyConversion;
+import org.codelab.currencyCalculator.services.data.CurrencyDAO;
 import org.codelab.currencyCalculator.services.data.SqlCurrencyDAO;
 import saspark.Spark.*; //importing Spark java
 import org.apache.spark.api.java.*;
-import org.apache.spark.api.java.function.*; //figute out Maven dependency
+import org.apache.spark.api.java.function.*; //figure out Maven dependency
+import java.sql.Connection;
 
 import java.io.*;
 
@@ -36,6 +38,9 @@ public class CurrencyService {
 
 
     public BigDecimal getAmount(BigDecimal inputAmount, String currencyNameFrom, String currencyIdTo) {
+
+
+
         // databaseService to lookup the current info
         // this assumes USD from
         BigDecimal conversionRate = databaseService.convertFromTo(currencyIdTo);
@@ -47,7 +52,12 @@ public class CurrencyService {
 
     //will return JSON
     public CurrencyConversion doCurrencyConversion(String currencyFrom, String currencyTo, BigDecimal amountFrom) {
-        get("/")
+        //get("/");
+
+        SqlCurrencyDAO accessObject = new SqlCurrencyDAO();
+        Connection connection = accessObject.getConnection();
+        accessObject.connectToDatabase(connection);
+        DatabaseService databaseService = new DatabaseService(accessObject);
 
 
 
@@ -113,7 +123,6 @@ public class CurrencyService {
 //when hit it, this access point, will call the CurrencyService
 //CurrencyService will call DataBase Service, will get the stuff do the conversion, and then will present it back, will return  a JSON object
 //JSON object will be a query object,
-
 
 
     Example JSON object that is returned, will be query object, query JSON

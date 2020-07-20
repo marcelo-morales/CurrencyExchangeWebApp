@@ -15,14 +15,19 @@ public class SqlCurrencyDAO implements CurrencyDAO {
     private final String password = "leonardo11";
     private Connection connection = null;
 
+    public Connection getConnection() {
+        Connection connection = DriverManager.getConnection(url, user, password);
+        return connection;
+    }
 
-    public SqlCurrencyDAO(Connection connection) {
+
+    public void connectToDatabase(Connection connection) {
         try {
             connection = DriverManager.getConnection(url, user, password);
         } catch (SQLException unableToConnect) {
             System.out.println(unableToConnect.getMessage());
             System.exit(0);
-        }
+            }
         }
         //if got here, connected to the database
 
