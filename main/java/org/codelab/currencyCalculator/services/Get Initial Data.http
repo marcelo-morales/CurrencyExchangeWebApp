@@ -1,0 +1,3 @@
+GET http://localhost:4567/hello
+
+GET https://openexchangerates.org/api/latest.json?app_id=a0eea9f5a84049feb8523bdba65be04f

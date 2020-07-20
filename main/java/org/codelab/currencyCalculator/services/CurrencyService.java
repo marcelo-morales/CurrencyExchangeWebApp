@@ -7,6 +7,7 @@ import org.apache.spark.api.java.*;
 import org.apache.spark.api.java.function.*; //figure out Maven dependency
 import java.sql.Connection;
 
+
 import java.io.*;
 
 import java.math.BigDecimal;
@@ -38,8 +39,6 @@ public class CurrencyService {
 
 
     public BigDecimal getAmount(BigDecimal inputAmount, String currencyNameFrom, String currencyIdTo) {
-
-
 
         // databaseService to lookup the current info
         // this assumes USD from
@@ -117,7 +116,7 @@ public class CurrencyService {
 
         //API call to get currency
 //     Http://host/convert?toCurrency=EUR&amount=234.45   (GET)
-//verb tht we are using is convert
+//vverb tht we are using is convert
 //will give it the to currency, in this case EUR
 //will give it the amount
 //when hit it, this access point, will call the CurrencyService
