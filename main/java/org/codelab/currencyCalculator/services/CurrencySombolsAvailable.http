@@ -1,0 +1,2 @@
+GET https://openexchangerates.org/api/currencies.json
+//returns a JSON object

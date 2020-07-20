@@ -116,7 +116,7 @@ public class CurrencyService {
 
         //API call to get currency
 //     Http://host/convert?toCurrency=EUR&amount=234.45   (GET)
-//vverb tht we are using is convert
+//verb tht we are using is convert
 //will give it the to currency, in this case EUR
 //will give it the amount
 //when hit it, this access point, will call the CurrencyService
@@ -143,7 +143,6 @@ public class CurrencyService {
 
 
 
-
     //reallly confused, working on this..
     public static void Main(String ... args) {
 
@@ -154,8 +153,6 @@ public class CurrencyService {
         CurrencyService cs = new CurrencyService(db, getDataProvider());
 
         db.getDataFromDatabase();
-
-
 
     }
 }
