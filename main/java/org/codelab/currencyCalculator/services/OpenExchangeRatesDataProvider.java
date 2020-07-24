@@ -21,20 +21,23 @@ public class OpenExchangeRatesDataProvider implements DataProvider {
     private static String APP_ID = "ef0fa92c95d345cd8b236c17f7da8cc8";
     private static String OPEN_EXCHANGE_URI = "openexchangerates.org";
 
+
+    //fix output currencies
     public static void main(String ... args) throws Exception {
-        List<CurrencyExchange> results = getCurrency("EUR", Arrays.asList("USD","GBP","AUD"));
+
+        //will always update every rate in the database!
+        List<CurrencyExchange> results = getCurrency("USD", Arrays.asList("USD","GBP","AUD", "JPY", "GBP", "CAD", "PEN", "MXN", "ZAR", "RUB", "EUR"));
         ListIterator<CurrencyExchange> it = results.listIterator();
         while (it.hasNext()) {
             CurrencyExchange next = (CurrencyExchange)it.next();
             System.out.println(next.toString());
         }
 
-        System.out.println("This is the response: " + results);
+        System.out.println("This is the response!!!! : " + results);
     }
 
 
-
-    private static List<CurrencyExchange> getCurrency(String baseCurrency, List<String> targetCurrencies ) throws Exception {
+    public static List<CurrencyExchange> getCurrency(String baseCurrency, List<String> targetCurrencies ) throws Exception {
 
         URIBuilder uriBuilder = new URIBuilder();
         //Utility class for building URIs from their components
@@ -44,7 +47,7 @@ public class OpenExchangeRatesDataProvider implements DataProvider {
         uriBuilder.setHost(OPEN_EXCHANGE_URI);
         uriBuilder.setPath("/api/latest.json");
         uriBuilder.addParameter("app_id", APP_ID);
-        uriBuilder.addParameter("base", "EUR");
+        uriBuilder.addParameter("base", "USD");
         uriBuilder.addParameter("symbols", String.join(",", targetCurrencies));
         URL toQuery = uriBuilder.build().toURL();
 
