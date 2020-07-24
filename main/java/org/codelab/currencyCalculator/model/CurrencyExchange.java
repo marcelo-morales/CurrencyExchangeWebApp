@@ -3,8 +3,9 @@ package org.codelab.currencyCalculator.model;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Objects;
+import java.util.*;
 
-import com.google.common.base.Objects;
+//import com.google.common.base.Objects;
 
 public class CurrencyExchange {
 
@@ -59,15 +60,15 @@ public class CurrencyExchange {
 
         //object o, object passed in, does exist, will now compare each field of the object
         CurrencyExchange that = (CurrencyExchange) o;
-        return Objects.equal(currencyId, that.currencyId) &&
-                Objects.equal(exchangeRate, that.exchangeRate) &&
-                Objects.equal(baseCurrency, that.baseCurrency) &&
-                Objects.equal(timestamp, that.timestamp);
+        return Objects.equals(currencyId, that.currencyId) &&
+                Objects.equals(exchangeRate, that.exchangeRate) &&
+                Objects.equals(baseCurrency, that.baseCurrency) &&
+                Objects.equals(timestamp, that.timestamp);
     }
 
     @Override
     //A hash code is an integer value that is associated with each object in Java.
     public int hashCode() {
-        return Objects.hashCode(currencyId, exchangeRate, baseCurrency, timestamp);
+        return Objects.hashCode(new CurrencyExchange(this.currencyId, this.exchangeRate, this.baseCurrency, this.timestamp));
     }
 }

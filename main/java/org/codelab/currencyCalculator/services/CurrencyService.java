@@ -59,7 +59,6 @@ public class CurrencyService {
         DatabaseService databaseService = new DatabaseService(accessObject);
 
 
-
         //call the database to get the info ... or call the existing method in this class getAmount.
 
         //load the data into the CurrencyConversion object.
