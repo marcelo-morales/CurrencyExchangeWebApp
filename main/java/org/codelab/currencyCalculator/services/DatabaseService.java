@@ -1,8 +1,9 @@
 package org.codelab.currencyCalculator.services;
 
-import java.math.BigDecimal;
-
+import org.codelab.currencyCalculator.model.CurrencyExchange;
 import org.codelab.currencyCalculator.services.data.CurrencyDAO;
+
+import java.util.List;
 
 /*
  *  This is the DataBase Service class
@@ -21,12 +22,12 @@ public class DatabaseService {
 
 
 
-    /*
-    public BigDecimal convertFromTo(String currencyTo) {
-        //its doing Too much.
-        return currencyDAO.getCurrency(currencyTo);
+
+    public void getDataFromAPIFillDatabase() {
+        String inputBy
+
     }
 
-     */
+
 
 }

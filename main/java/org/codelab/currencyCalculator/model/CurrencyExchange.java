@@ -3,7 +3,6 @@ package org.codelab.currencyCalculator.model;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Objects;
-import java.util.*;
 
 //import com.google.common.base.Objects;
 
@@ -44,7 +43,7 @@ public class CurrencyExchange {
         return "CurrencyExchange{" +
                 "currencyId='" + currencyId + '\'' +
                 ", exchangeRate=" + exchangeRate +
-                ", baseCurrency='" + baseCurrency + '\'' +
+                ", baseCurrency='" + this.baseCurrency + '\'' +
                 ", timestamp='" + timestamp + '\'' +
                 '}';
     }

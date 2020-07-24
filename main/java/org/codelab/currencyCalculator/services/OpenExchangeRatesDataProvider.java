@@ -10,6 +10,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Arrays;
 import java.util.List;
+import java.util.ListIterator;
 
 //An ordered collection (also known as a sequence). The user of this interface has precise control over where in the
 // list each element is inserted. The user can access elements by their integer index (position in the list), and
@@ -22,15 +23,22 @@ public class OpenExchangeRatesDataProvider implements DataProvider {
 
     public static void main(String ... args) throws Exception {
         List<CurrencyExchange> results = getCurrency("EUR", Arrays.asList("USD","GBP","AUD"));
+        ListIterator<CurrencyExchange> it = results.listIterator();
+        while (it.hasNext()) {
+            CurrencyExchange next = (CurrencyExchange)it.next();
+            System.out.println(next.toString());
+        }
+
         System.out.println("This is the response: " + results);
     }
+
+
 
     private static List<CurrencyExchange> getCurrency(String baseCurrency, List<String> targetCurrencies ) throws Exception {
 
         URIBuilder uriBuilder = new URIBuilder();
         //Utility class for building URIs from their components
         //A Uniform Resource Identifier (URI) is a string of characters that unambiguously identifies a particular resource.
-
 
         uriBuilder.setScheme("https");
         uriBuilder.setHost(OPEN_EXCHANGE_URI);
@@ -39,7 +47,6 @@ public class OpenExchangeRatesDataProvider implements DataProvider {
         uriBuilder.addParameter("base", "EUR");
         uriBuilder.addParameter("symbols", String.join(",", targetCurrencies));
         URL toQuery = uriBuilder.build().toURL();
-
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(toQuery.toURI())

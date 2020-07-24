@@ -21,15 +21,11 @@ public class CurrencyExchangeDTO {
         return this.timestamp;
     }
 
-    public String getInputCurrency() {
-        return this.inputCurrency;
-    }
-
     public Map<String,BigDecimal> getRates() {
         return this.rates;
     }
 
     public String getBase() {
-        return "Hello";
+        return this.inputCurrency;
     }
 }
