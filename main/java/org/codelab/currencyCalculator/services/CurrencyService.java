@@ -2,10 +2,10 @@ package org.codelab.currencyCalculator.services;
 import org.codelab.currencyCalculator.model.CurrencyConversion;
 import org.codelab.currencyCalculator.services.data.CurrencyDAO;
 import org.codelab.currencyCalculator.services.data.SqlCurrencyDAO;
-import saspark.Spark.*; //importing Spark java
-import org.apache.spark.api.java.*;
-import org.apache.spark.api.java.function.*; //figure out Maven dependency
+
 import java.sql.Connection;
+
+import static spark.Spark.*;
 
 
 import java.io.*;
