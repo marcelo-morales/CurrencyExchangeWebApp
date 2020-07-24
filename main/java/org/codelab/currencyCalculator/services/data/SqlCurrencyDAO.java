@@ -15,7 +15,7 @@ public class SqlCurrencyDAO implements CurrencyDAO {
     private final String password = "leonardo11";
     private Connection connection = null;
 
-    public Connection getConnection() {
+    public Connection getConnection() throws SQLException {
         Connection connection = DriverManager.getConnection(url, user, password);
         return connection;
     }
@@ -28,10 +28,9 @@ public class SqlCurrencyDAO implements CurrencyDAO {
             System.out.println(unableToConnect.getMessage());
             System.exit(0);
             }
-        }
-        //if got here, connected to the database
-
     }
+
+
 
     /*
      * will update a currency using SQL
@@ -96,8 +95,8 @@ public class SqlCurrencyDAO implements CurrencyDAO {
             while(result_data.next()) {
                 System.out.print("What is returned from this function is: "+result_data+", ");
                 System.out.println();
-                Timestamp return_time = new Timestamp(result_data);
-                return return_time;
+                //Timestamp return_time = new Timestamp();
+                return null;
             }
         }
         //getting the rate of the currency did not work, exception thrown and caught

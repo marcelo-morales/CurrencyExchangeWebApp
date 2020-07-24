@@ -1,16 +1,6 @@
 package org.codelab.currencyCalculator.services;
-import org.codelab.currencyCalculator.model.CurrencyConversion;
-import org.codelab.currencyCalculator.services.data.CurrencyDAO;
-import org.codelab.currencyCalculator.services.data.SqlCurrencyDAO;
 
-import java.sql.Connection;
-
-import static spark.Spark.*;
-
-
-import java.io.*;
-
-import java.math.BigDecimal;
+import spark.Spark;
 
 public class CurrencyService {
 
@@ -37,7 +27,7 @@ public class CurrencyService {
     //will return BigDecimal
 
 
-
+    /*
     public BigDecimal getAmount(BigDecimal inputAmount, String currencyNameFrom, String currencyIdTo) {
 
         // databaseService to lookup the current info
@@ -140,11 +130,16 @@ public class CurrencyService {
 
     */
 
+    public static void main(String [] args) {
+        System.out.println("Please work");
+        Spark.get("/convert", (req, res) -> "This is a check! If got here, it worked");
 
 
-    //reallly confused, working on this..
-    public static void Main(String ... args) {
 
+
+
+
+        /*
         SqlCurrencyDAO myDataAccessObject = new SqlCurrencyDAO(myconnection);
 
         DatabaseService db = new DatabaseService(myDataAccessObject);
@@ -152,6 +147,6 @@ public class CurrencyService {
         CurrencyService cs = new CurrencyService(db, getDataProvider());
 
         db.getDataFromDatabase();
-
+        */
     }
 }

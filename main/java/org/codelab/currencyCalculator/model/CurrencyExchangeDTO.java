@@ -28,4 +28,8 @@ public class CurrencyExchangeDTO {
     public Map<String,BigDecimal> getRates() {
         return this.rates;
     }
+
+    public String getBase() {
+        return "Hello";
+    }
 }
