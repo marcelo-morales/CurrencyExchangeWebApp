@@ -40,6 +40,7 @@ public class SqlCurrencyDAO implements CurrencyDAO {
 
     /*
      * will update a currency using SQL, will update the rate, id, and timestamp of a certain row in database
+     * may have to use Prepared State,ent
      */
     @Override
     public void updateCurrency(String new_currencyId, BigDecimal new_value, Timestamp new_time) throws SQLException {
@@ -47,12 +48,14 @@ public class SqlCurrencyDAO implements CurrencyDAO {
         Connection c = this.getConnection();
         this.connectToDatabase(c);
 
+        //String new_currencyId_again = "hello";
+
         try {
             Statement update = c.createStatement();
             System.out.println("Did not work :( first time");
 
-            ResultSet result_data = update.executeQuery("INSERT  INTO currency_exchange (currency_id, rate, date_of_calculation) " +
-              "VALUES (new_currencyId, new_value, new_time )");
+            ResultSet result_data = update.executeQuery( "INSERT  INTO currency_exchange (currency_id) " +
+              "VALUES (new_currencyId_again, new_value, new_time )");
             //checking to see if worked
             while (result_data.next()) {
                 System.out.print("Updated currency Id is: " + result_data.getString("currency_id") + ", ");

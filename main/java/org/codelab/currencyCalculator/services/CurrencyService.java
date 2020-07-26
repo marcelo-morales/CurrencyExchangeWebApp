@@ -134,6 +134,16 @@ public class CurrencyService {
         System.out.println("Please work");
         Spark.get("/convert", (req, res) -> "This is a check! If got here, it worked");
 
+        Spark.get("/hello/:name", (request, response) -> {
+            return "Hello: " + request.params(":name");
+        });
+
+
+        // Using Route, error handling
+        Spark.notFound((req, res) -> {
+            res.type("application/json");
+            return "{\"message\":\"Sorry for the error, please let us know how to fix this by contacting the owner(s) of this application\"}";
+        });
 
 
 
