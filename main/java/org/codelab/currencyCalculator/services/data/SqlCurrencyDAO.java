@@ -50,12 +50,16 @@ public class SqlCurrencyDAO implements CurrencyDAO {
 
         //String new_currencyId_again = "hello";
 
+        //MongoDB
+
+        //FireBase
+
         try {
             Statement update = c.createStatement();
             System.out.println("Did not work :( first time");
 
             ResultSet result_data = update.executeQuery( "INSERT  INTO currency_exchange (currency_id) " +
-              "VALUES (new_currencyId_again, new_value, new_time )");
+              "VALUES ('hello', new_value, new_time )");
             //checking to see if worked
             while (result_data.next()) {
                 System.out.print("Updated currency Id is: " + result_data.getString("currency_id") + ", ");

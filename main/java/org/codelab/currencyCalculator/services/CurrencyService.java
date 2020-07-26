@@ -135,7 +135,8 @@ public class CurrencyService {
         Spark.get("/convert", (req, res) -> "This is a check! If got here, it worked");
 
         Spark.get("/hello/:name", (request, response) -> {
-            return "Hello: " + request.params(":name");
+            //request.params("convert")
+            return "Hello " + request.params(":name") + "! Welcome to the Currency Exchange Web Application!";
         });
 
 
