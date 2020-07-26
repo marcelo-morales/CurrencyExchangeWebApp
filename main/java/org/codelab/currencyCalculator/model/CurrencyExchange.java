@@ -1,8 +1,9 @@
 package org.codelab.currencyCalculator.model;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.Objects;
+
 
 //import com.google.common.base.Objects;
 
@@ -12,10 +13,10 @@ public class CurrencyExchange {
     private final String currencyId; //ID of each currency
     private final BigDecimal exchangeRate; //exchange rate of each currency, initially will be rate to convert from inputCurrency to the dollar
     private final String baseCurrency; //initially will always be dollar
-    private final Date timestamp; //time that calculation happened, when called database
+    private final Timestamp timestamp; //time that calculation happened, when called database
 
     //constructor
-    public CurrencyExchange(String currencyId, BigDecimal exchangeRate, String baseCurrency, Date timestamp) {
+    public CurrencyExchange(String currencyId, BigDecimal exchangeRate, String baseCurrency, Timestamp timestamp) {
         this.currencyId = currencyId;
         this.exchangeRate = exchangeRate;
         this.baseCurrency = baseCurrency;
@@ -34,7 +35,7 @@ public class CurrencyExchange {
         return this.baseCurrency;
     }
 
-    public Date getTimestamp() {
+    public Timestamp getTimestamp() {
         return this.timestamp;
     }
 
