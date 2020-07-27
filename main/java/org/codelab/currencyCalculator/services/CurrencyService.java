@@ -6,6 +6,7 @@ import org.codelab.currencyCalculator.services.data.SqlCurrencyDAO;
 import spark.Spark;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -91,7 +92,7 @@ public class CurrencyService {
 
         try {
             String sample_input_currency_Id = "USD";
-            String sample_output_currency_Id = "PEn";
+            String sample_output_currency_Id = "EUR";
             BigDecimal sample_amount_to_convert = BigDecimal.valueOf(234.45);
 
 
@@ -107,6 +108,7 @@ public class CurrencyService {
 
 
             BigDecimal answer_of_conversion = cs.doConversion(sample_input_currency_Id, sample_output_currency_Id, sample_amount_to_convert);
+            answer_of_conversion = answer_of_conversion.setScale(2, RoundingMode.CEILING);
             System.out.println("Final answer is " + answer_of_conversion);
 
             //create JSON object as instructed
