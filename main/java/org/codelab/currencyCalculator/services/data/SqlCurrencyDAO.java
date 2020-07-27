@@ -58,8 +58,14 @@ public class SqlCurrencyDAO implements CurrencyDAO {
             Statement update = c.createStatement();
             System.out.println("Did not work :( first time");
 
-            ResultSet result_data = update.executeQuery( "INSERT  INTO currency_exchange (currency_id) " +
-              "VALUES ('hello', new_value, new_time )");
+            //ResultSet result_data1 = update.executeQuery("DECLARE @TestVariable AS VARCHAR(100)= new_currencyId");
+
+
+            ResultSet result_data = update.executeQuery("UPDATE currency_exchange SET currency_id = new_currencyId");
+
+            //ResultSet result_data = update.executeQuery( "INSERT  INTO currency_exchange (currency_id) " +
+             // "VALUES ('hello', new_value, new_time )");
+
             //checking to see if worked
             while (result_data.next()) {
                 System.out.print("Updated currency Id is: " + result_data.getString("currency_id") + ", ");
@@ -74,6 +80,8 @@ public class SqlCurrencyDAO implements CurrencyDAO {
         }
 
     }
+
+    //http://host?convert?toCurrency=EUR&amount=234.45
 
     /*
      * will get the rate of a currency using SQL

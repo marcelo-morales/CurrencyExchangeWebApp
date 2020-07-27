@@ -2,14 +2,12 @@ package org.codelab.currencyCalculator.services;
 
 import org.codelab.currencyCalculator.model.CurrencyExchange;
 import org.codelab.currencyCalculator.services.data.CurrencyDAO;
-import org.codelab.currencyCalculator.services.data.SqlCurrencyDAO;
 
-import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ListIterator;
 
-import static org.codelab.currencyCalculator.services.OpenExchangeRatesDataProvider.getCurrency;
+import static org.codelab.currencyCalculator.services.OpenExchangeRatesDataProvider.getCurrencyFromAPI;
 
 
 /*
@@ -31,7 +29,7 @@ public class DatabaseService {
     public void getDataFromAPIFillDatabase() {
 
         try {
-            List<CurrencyExchange> new_data = getCurrency("USD", Arrays.asList("USD", "GBP", "AUD", "JPY", "GBP", "CAD", "PEN", "MXN", "ZAR", "RUB", "EUR"));
+            List<CurrencyExchange> new_data = getAllInformation("USD", Arrays.asList("USD", "GBP", "AUD", "JPY", "GBP", "CAD", "PEN", "MXN", "ZAR", "RUB", "EUR"));
             ListIterator<CurrencyExchange> it = new_data.listIterator();
             CurrencyDAO currencyDAO = getCurrencyDAO();
 
@@ -50,11 +48,31 @@ public class DatabaseService {
         }
     }
 
+    public static List<CurrencyExchange> getAllInformation(String baseCurrency, List<String> targetCurrencies) throws Exception {
+        List<CurrencyExchange> results = getCurrencyFromAPI("USD", Arrays.asList("USD","GBP","AUD", "JPY", "GBP", "CAD", "PEN", "MXN", "ZAR", "RUB", "EUR"));
+        return results;
+    }
+
+
 //null pointer exception thrown, debug
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws Exception {
+        List<CurrencyExchange> results = getAllInformation("USD", Arrays.asList("USD","GBP","AUD", "JPY", "GBP", "CAD", "PEN", "MXN", "ZAR", "RUB", "EUR"));
+        ListIterator<CurrencyExchange> it = results.listIterator();
+        while (it.hasNext()) {
+            CurrencyExchange next = (CurrencyExchange)it.next();
+            System.out.println(next.toString());
+        }
+
+
+
+        //System.out.println("This is the response!!!! : " + results);
+
+        /*
         CurrencyDAO dao = new SqlCurrencyDAO();
         DatabaseService db = new DatabaseService(dao);
         dao.connectToDatabase(dao.getConnection());
         db.getDataFromAPIFillDatabase();
+
+         */
     }
 }

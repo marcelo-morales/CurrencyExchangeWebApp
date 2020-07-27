@@ -26,7 +26,7 @@ public class OpenExchangeRatesDataProvider implements DataProvider {
     public static void main(String ... args) throws Exception {
 
         //will always update every rate in the database!
-        List<CurrencyExchange> results = getCurrency("USD", Arrays.asList("USD","GBP","AUD", "JPY", "GBP", "CAD", "PEN", "MXN", "ZAR", "RUB", "EUR"));
+        List<CurrencyExchange> results = getCurrencyFromAPI("USD", Arrays.asList("USD","GBP","AUD", "JPY", "GBP", "CAD", "PEN", "MXN", "ZAR", "RUB", "EUR"));
         ListIterator<CurrencyExchange> it = results.listIterator();
         while (it.hasNext()) {
             CurrencyExchange next = (CurrencyExchange)it.next();
@@ -37,7 +37,7 @@ public class OpenExchangeRatesDataProvider implements DataProvider {
     }
 
 
-    public static List<CurrencyExchange> getCurrency(String baseCurrency, List<String> targetCurrencies ) throws Exception {
+    public static List<CurrencyExchange> getCurrencyFromAPI(String baseCurrency, List<String> targetCurrencies ) throws Exception {
 
         URIBuilder uriBuilder = new URIBuilder();
         //Utility class for building URIs from their components
