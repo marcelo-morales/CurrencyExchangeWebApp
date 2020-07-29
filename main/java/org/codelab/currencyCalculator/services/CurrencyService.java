@@ -11,6 +11,7 @@ package org.codelab.currencyCalculator.services;
 import org.codelab.currencyCalculator.model.CurrencyExchange;
 import org.codelab.currencyCalculator.services.data.CurrencyDAO;
 import org.codelab.currencyCalculator.services.data.SqlCurrencyDAO;
+import org.json.JSONObject;
 import spark.Spark;
 
 import javax.json.Json;
@@ -26,13 +27,14 @@ import static org.codelab.currencyCalculator.services.DatabaseService.getAllInfo
 
 public class CurrencyService {
 
+    //private static MimeTypeParameterList mapOfRates;
     //DB service
     private final DatabaseService databaseService;
 
     //Data Provider
     private final DataProvider dataProvider;
 
-    public Map<String, BigDecimal> mapOfRates;
+    public static Map<String, BigDecimal> mapOfRates;
 
     //constructor
     public CurrencyService(DatabaseService databaseService, DataProvider dataProvider, Map<String, BigDecimal> mapOfRates) {
@@ -75,41 +77,68 @@ public class CurrencyService {
     }
 
 
-    public BigDecimal doConversion(String currencyFrom, String currencyTo, BigDecimal inputAmount) throws Exception {
-        BigDecimal rateForConversion = this.mapOfRates.get(currencyTo);
+    public static BigDecimal doConversion(String currencyFrom, String currencyTo, BigDecimal inputAmount) throws Exception {
+        BigDecimal rateForConversion = mapOfRates.get(currencyTo);
         return inputAmount.multiply(rateForConversion);
     }
 
     //Will use this
-    //http://host/convert/toCurrency/EUR/200/
+    //http://host/convert/USD/toCurrency/EUR/200/
 
     //Chris wants
     //http://host/convert?toCurrency=EUR&amount=234.45
 
 
 
-
     public static void main(String[] args) throws Exception {
-        System.out.println("Please work");
 
-        Spark.get("/convert/*/to/*", (request, response) -> {
+        Spark.get("/convert/:*/toCurrency/:*/:*", (request, response) -> {
+            String path = request.url();
+            System.out.println("This is the path URL" + path);
+            String [] parameters = path.split("/");
+
+            for (int i = 0; i < parameters.length; ++i) {
+                System.out.println("The index is " + i + " and corresponding parameter is " + parameters[i]);
+            }
+
+            String fromCurrency = parameters[4];
+            String toCurrency = parameters[6];
+            BigDecimal fromAmount = BigDecimal.valueOf(Long.parseLong(parameters[7]));
+            BigDecimal toAmount = doConversion(fromCurrency, toCurrency, fromAmount);
+
+            System.out.println("Converted amount is " + toAmount);
+
+            JSONObject item = new JSONObject();
+            item.put("fromCurrency", fromCurrency);
+            item.put("toCurrency",toCurrency);
+            item.put("fromAmount",fromAmount);
+            item.put("toAmount",toAmount);
+
+            System.out.println("This is JSON I am returning " + item.toString());
+
+            return item;
+        });
+
+
+
+
+
+        Spark.get("/convert/:*/toCurrency/:*/:*", (request, response) -> {
             String path = request.matchedPath();
             String [] parameters = path.split("/");
             for (int i = 0; i < parameters.length; ++i) {
-                String current = parameters[i];
-
-                System.out.println("Parameters I need are " + parameters[i]);
+                System.out.println("The index is " + i + " and corresponding parameter is " + parameters[i]);
             }
-
 
             System.out.println("This is URL path " + path);
 
-            String fromCurrency = "USD";
-            String toCurrency = "EUR";
-            BigDecimal fromAmount = BigDecimal.valueOf(234.50);
-            //BigDecimal toAmount = doConversion(fromCurrency, toCurrency, fromAmount);
-            CurrencyConversion currency_to_convert = new CurrencyConversion(fromCurrency, toCurrency, fromAmount, toAmount);
+            String fromCurrency = parameters[2];
+            String toCurrency = parameters[4];
+            BigDecimal fromAmount = BigDecimal.valueOf(Long.parseLong(parameters[5]));
+            BigDecimal toAmount = doConversion(fromCurrency, toCurrency, fromAmount);
 
+            System.out.println("Converted amount is " + toAmount);
+            //CurrencyConversion currency_to_convert = new CurrencyConversion(fromCurrency, toCurrency, fromAmount, toAmount);
 
             return "Number of splat parameters: " + request.splat().length;
         });
@@ -203,12 +232,14 @@ public class CurrencyService {
                 .add("toAmount", answer_of_conversion);
         String result = json.toString();
 
-        System.out.println("This is the result in JSON " + result.toString());
+        System.out.println("This is the result in JSON " + result);
         /*
         JsonReader jsonReader = Json.createReader(new StringReader("{\"fromCurrency\:sample_input_currency_Id\"\",\"age\":3,\"bitable\":false}"));
         JsonObject jobj = jsonReader.readObject();
         System.out.println(jobj);
         */
+
+
     }
 
 }
