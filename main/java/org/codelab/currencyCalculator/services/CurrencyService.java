@@ -105,6 +105,7 @@ public class CurrencyService {
             String toCurrency = parameters[6];
             BigDecimal fromAmount = BigDecimal.valueOf(Long.parseLong(parameters[7]));
             BigDecimal toAmount = doConversion(fromCurrency, toCurrency, fromAmount);
+            toAmount = toAmount.setScale(2, RoundingMode.CEILING);
 
             System.out.println("Converted amount is " + toAmount);
 
@@ -118,7 +119,6 @@ public class CurrencyService {
 
             return item;
         });
-
 
 
 
