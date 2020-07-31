@@ -34,12 +34,9 @@ public class DatabaseService {
             CurrencyDAO currencyDAO = getCurrencyDAO();
 
             while (it.hasNext()) {
-                System.out.println("Working");
                 CurrencyExchange next = (CurrencyExchange) it.next();
-                System.out.println("Working 2");
 
                 currencyDAO.updateCurrency(next.getCurrencyId(), next.getExchangeRate(), next.getTimestamp());
-                System.out.println("Working 3");
                 System.out.println(next.toString());
             }
 
